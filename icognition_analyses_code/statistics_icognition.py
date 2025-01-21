@@ -145,8 +145,8 @@ def concurrent_validity(df_hc_overall, df_ms_overall, icognition_scores, paper_p
                     ax=axes[row_nr])
         sns.regplot(x=df_ms[score_icog], y=df_ms[score_paper_pencil], color='#DD8861', fit_reg=True,
                     ax=axes[row_nr])
-        patch_hc = mpatches.Patch(color='#51789D', label='HC')
-        patch_ms = mpatches.Patch(color='#DD8861', label='MS')
+        patch_hc = mpatches.Patch(color='#51789D', label='Healthy\ncontrols')
+        patch_ms = mpatches.Patch(color='#DD8861', label='People\nwith MS')
 
         axes[row_nr].legend(handles=[patch_hc, patch_ms], handleheight=0.2, handlelength=1)
         axes[row_nr].set_xlabel(label_dict.get(score_icog), fontsize=12)
@@ -211,9 +211,9 @@ def ms_versus_hc(df_hc_overall, df_ms_overall, scores, txt, label_dict, output_d
         # Create visualisation
         sns.kdeplot(x=df_hc[score], color='#51789D', ax=axes[row_nr])
         sns.kdeplot(x=df_ms[score], color='#DD8861', ax=axes[row_nr])
-        patch_hc = mpatches.Patch(color='#51789D', label='HC')
-        patch_ms = mpatches.Patch(color='#DD8861', label='MS')
-        axes[row_nr].legend(handles=[patch_hc, patch_ms], handleheight=0.2, handlelength=1)
+        patch_hc = mpatches.Patch(color='#51789D', label='Healthy\ncontrols')
+        patch_ms = mpatches.Patch(color='#DD8861', label='People\nwith MS')
+        axes[row_nr].legend(handles=[patch_hc, patch_ms], handleheight=0.2, handlelength=1, loc='upper left')
         axes[row_nr].set_xlabel(label_dict.get(score), fontsize=12)
         axes[row_nr].set_ylabel('Density', fontsize=12)
         plt.xticks(fontsize=10)
@@ -267,7 +267,7 @@ def ecological_validity(df_overall, var_list_1, other_var, txt, label_dict, outp
         # Create visualisation
         sns.regplot(x=df[var_1], y=df[var_2], color='#DD8861',
                     fit_reg=True, ax=axes[row_nr])
-        patch_ms = mpatches.Patch(color='#DD8861', label='MS')
+        patch_ms = mpatches.Patch(color='#DD8861', label='People\nwith MS')
         axes[row_nr].legend(handles=[patch_ms], handleheight=0.2, handlelength=1)
         axes[row_nr].set_xlabel(label_dict.get(var_1), fontsize=12)
         axes[row_nr].set_ylabel(label_dict.get(var_2), fontsize=12)
@@ -327,7 +327,7 @@ def test_retest_reliability(df_overall, icognition_scores, txt, label_dict, outp
         # Create visualisation
         sns.regplot(x=df[var_baseline], y=df[var_retest], color='#51789D', fit_reg=True,
                     ax=axes[row_nr])
-        patch_hc = mpatches.Patch(color='#51789D', label='HC')
+        patch_hc = mpatches.Patch(color='#51789D', label='Healthy\ncontrols')
         axes[row_nr].legend(handles=[patch_hc], handleheight=0.2, handlelength=1)
         axes[row_nr].set_xlabel(label_dict.get(var_baseline), fontsize=12)
         axes[row_nr].set_ylabel(label_dict.get(var_baseline) + ' retest', fontsize=12)
@@ -503,8 +503,8 @@ if __name__ == "__main__":
     # Initialise variables
     icognition_scores = ['symbol_test_n_correct', 'dot_test_n_correct_total', 'digit_span_vis_span_level_score']
     paper_pencil_scores = ['sdmt', 'spart_tot', 'digit_span_aud_span_level_score']
-    icognition_labels = ['Symbol Test', 'Dot Test', 'vBDS']
-    paper_pencil_labels = ['SDMT', 'Spart 10/36', 'aBDS']
+    icognition_labels = ['Symbol Test (n correct total)', 'Dot Test (n correct total)', 'vBDS (sum correct spans)']
+    paper_pencil_labels = ['SDMT (n correct total)', 'SPART (n correct total)', 'aBDS (sum correct spans)']
     label_dict = dict(zip(icognition_scores + paper_pencil_scores + ['edss', 'bdi_total', 'fsmc_total', 'disease_duration', 'education_n_years', 'age'],
                           icognition_labels + paper_pencil_labels + ['EDSS', 'BDI', 'FSMC', 'Disease Duration', 'Education Level', 'Age']))
 
